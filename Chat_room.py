@@ -21,7 +21,7 @@ area1,area2=typing_area.columns(2)
 
 send_button=area2.button("Send") 
 refresh=area2.button("Refresh")
-type_box=txt = area1.text_area('Enter your massage',key=1)
+type_box=txt = area1.text_area('Enter your message',key=1)
   
 
 
