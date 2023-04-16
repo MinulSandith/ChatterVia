@@ -17,7 +17,7 @@ In the chat room,
 ## Version
 CV-00.0001
 ## Developer
-He is somebody who likes to be anonymous
+Minul Sandith 
 ## Support me
 Help in bug fixing by opening pull requests.
 Look at my other apps too!!!!
