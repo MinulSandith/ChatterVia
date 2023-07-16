@@ -2,7 +2,7 @@
 
 
 This is publish at - <https://minulsandith-chattervia-chat-room-8mfa07.streamlit.app/>
-Now you are interacting using this link.
+
 ## Purpose
 Chatting with each other using a global chat room.
 ## How to use
