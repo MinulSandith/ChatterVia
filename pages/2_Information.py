@@ -1,10 +1,8 @@
 import streamlit as st
 
-import streamlit as st
-
 st.set_page_config(
     page_title="Information",
-    page_icon=":octagonal_sign",
+    page_icon=":octagonal_sign:",
 )
 
 st.sidebar.header(":octagonal_sign: Information")

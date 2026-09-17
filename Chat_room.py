@@ -1,12 +1,9 @@
 import streamlit as st
 import pyrebase
 import time
-import streamlit as st
 
 
-
-
-st.set_page_config(page_title="ChatterVia Chat_Room",page_icon=":smile")
+st.set_page_config(page_title="ChatterVia Chat_Room",page_icon=":smile:")
 with open ("style.css") as f :
     st.markdown( f'<style>{f.read()}</style>',unsafe_allow_html=True)
 st.header("	:smile: ChatterVia Chat room")
@@ -35,23 +32,24 @@ config={
   "projectId": "chat-test-88c6d",
   "storageBucket": "chat-test-88c6d.appspot.com",
   "messagingSenderId": "556391649754",
-  "appId": "1:556391649754:web:a4dee4ef7410a31b98b0e3",
-  "databaseURl":"https://chat-test-88c6d-default-rtdb.firebaseio.com/"
-  }    
+  "appId": "1:556391649754:web:a4dee4ef7410a31b98b0e3"
+  }
 
 firebase=pyrebase.initialize_app(config)
 database=firebase.database()
 
-def load_msg():    
+def load_msg():
     multi_line=""
-    for data in database.child("msg").get().val():
-         if str(type(data))== "<class 'NoneType'>":
+    messages=database.child("msg").get().val()
+    if messages is None:
+        return multi_line
+    for data in messages:
+         if data is None:
             pass
          else:
-              
               single_line="{} : {}".format(data["name"],data["msg"])
               multi_line=multi_line+single_line+"\n"
-              
+
     return(multi_line)
 
 
@@ -70,16 +68,15 @@ if refresh:
     
     
 
-if send_button:
-    
+if send_button and type_box.strip() != "":
 
-    count=database.child("info").get().val()['last']
-    
+    info=database.child("info").get().val()
+    count=info['last'] if info else 0
+
     database.child("info").set({
     'last':1+count
-    }) 
+    })
 
-    count=database.child("info").get().val()['last']
     name=name_box
     if name=="":
         name="No Name"
@@ -87,8 +84,8 @@ if send_button:
     if msg_to_be_sent[-1]=="\n":
         msg_to_be_sent=msg_to_be_sent.rstrip(msg_to_be_sent[-1])
     if "\n" in msg_to_be_sent:
-        
-        msg_to_be_sent=msg_to_be_sent.replace("\n","*") 
+
+        msg_to_be_sent=msg_to_be_sent.replace("\n","*")
 
 
     database.child("msg").child(count).set({
